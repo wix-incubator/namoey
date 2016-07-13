@@ -32,9 +32,6 @@ test.setShellCommands([
 ]);
 test.addShellCommand('echo done');
 
-// Setting sandbox dir
-test.setSandboxPath(process.cwd());
-
 // Start the madness
 test.run().then((stdout) => { ... }).catch((stdout) => { ... });
 ```
