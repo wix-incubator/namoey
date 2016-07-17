@@ -18,7 +18,6 @@ class NamoeyRunner {
 
       const gen = this._generators.filter(g => g.namespace === genNamespace);
 
-      // Run the generator
       helpers.run(gen[0].generator)
         .withOptions(this._options)
         .withArguments(this._args)
@@ -34,8 +33,7 @@ class NamoeyRunner {
             }
           });
           resolve();
-        })
-        .catch(err => {
+        }).catch(err => {
           reject(err);
         });
     });
