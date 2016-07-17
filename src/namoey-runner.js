@@ -23,6 +23,7 @@ class NamoeyRunner {
         .withOptions(this._options)
         .withArguments(this._args)
         .withPrompts(this._prompts)
+        .withGenerators(this._generators.map(g => [g.generator, g.namespace]))
 
         .toPromise().then(cwd => {
           shell.cd(cwd);
