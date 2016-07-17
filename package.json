@@ -27,5 +27,9 @@
     "eslint-config-wix": "latest",
     "eslint-plugin-mocha": "~3.0.0",
     "wix-node-build": "^1.0.203"
+  },
+  "dependencies": {
+    "shelljs": "^0.7.0",
+    "yeoman-test": "^1.4.0"
   }
 }

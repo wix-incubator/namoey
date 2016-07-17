@@ -1,5 +1,5 @@
 'use strict';
 
-const NamoeyFactory = require('./lib/namoey-factory');
+const NamoeyFactory = require('./src/namoey-factory');
 
 module.exports = opts => new NamoeyFactory(opts);

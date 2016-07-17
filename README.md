@@ -18,12 +18,10 @@ const generatorWebapp = require('./generators/app');
 
 // Basic settings
 const test = namoey()
-              .setGenerator(generatorWebapp)
+              .setGenerators([{namespace: 'webapp:app', generator: generatorWebapp}]) // Make sure to add sub-generator for composability
               .setPrompts({name: 'my-cool-project', description: 'awesome stuff'})
+              .setArgs('my-app')
               .setOptions({coffescript: true});
-
-// After every step this callback will be called
-test.setStepCallback((err, stdout) => { ... });
 
 // Those shell commands will be run after yeoman is done
 test.setShellCommands([
@@ -33,5 +31,6 @@ test.setShellCommands([
 test.addShellCommand('echo done');
 
 // Start the madness
-test.run().then((stdout) => { ... }).catch((stdout) => { ... });
+const runner = test.createRunner();
+runner.run('webapp:app').then((stdout) => { ... }).catch((stdout) => { ... });
 ```
