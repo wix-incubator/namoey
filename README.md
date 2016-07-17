@@ -34,5 +34,5 @@ test.addShellCommand('echo done');
 
 // Start the madness
 const runner = test.createRunner();
-runner.run('webapp:app').then((stdout) => { ... }).catch((stdout) => { ... });
+runner.run('webapp:app').then(() => { ... }).catch((err) => { ... });
 ```
