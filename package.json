@@ -1,7 +1,7 @@
 {
   "name": "namoey",
   "version": "0.0.1",
-  "description": "The Yeoman generator tester",
+  "description": "yeoman generator tester",
   "main": "index.js",
   "author": "yardensm@wix.com",
   "license": " MIT",

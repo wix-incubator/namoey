@@ -5,7 +5,7 @@
     <artifactId>namoey</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>namoey</name>
-    <description>The Yeoman generator tester</description>
+    <description>yeoman generator tester</description>
     <packaging>pom</packaging>
 
     <developers>

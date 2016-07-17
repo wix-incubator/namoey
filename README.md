@@ -1,8 +1,10 @@
 # namoey
 
-> The Yeoman generators tester
+> Yeoman generators tester
 
-Namoey runs your generator and some additional shell scripts in a sandbox to make sure your generated projects won't fail at start.
+`namoey` (yeoman spelled backwards) runs your generator and some additional shell scripts in a sandbox to make sure your generated projects won't fail at start.
+
+The idea here is to check if the generated project generated correctly - not by the files, but by their functionality. For example, you may include some dummy tests in your generator. To make sure they are working correctly, you can run the test runner manually, or automate this process with `nemoey`.
 
 ## Install
 
