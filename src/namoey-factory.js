@@ -24,7 +24,7 @@ class NamoeyFactory {
     return this;
   }
 
-  setPrompt(prompts) {
+  setPrompts(prompts) {
     this._prompts = prompts;
     return this;
   }
