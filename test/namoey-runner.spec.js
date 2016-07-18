@@ -9,6 +9,21 @@ describe('NamoeyFactory', () => {
 
   describe('run', () => {
 
+    it('should not be fine if generator namespace is not exist', done => {
+      const runner = new NamoeyRunner({
+        generators: [{namespace: 'gene', generator: helpers.createDummyGenerator()}],
+        prompts: {},
+        args: '',
+        options: {},
+        shellCommands: ['echo test', 'exit 0', 'echo still good']
+      });
+
+      runner.run('blah').catch(err => {
+        expect(err.message).to.be.equal(`Generator 'blah' is not exist`);
+        done();
+      });
+    });
+
     it('should be fine if a command exited with code 0', done => {
       const runner = new NamoeyRunner({
         generators: [{namespace: 'gene', generator: helpers.createDummyGenerator()}],

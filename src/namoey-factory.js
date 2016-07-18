@@ -7,6 +7,8 @@ class NamoeyFactory {
   constructor(options) {
     options = options || {};
 
+    this._silent = (typeof options.silent === 'undefined' ? true : options.silent);
+
     this._generators = options.generators || [];
     this._prompts = options.prompts || {};
     this._args = options.args || '';
@@ -51,7 +53,8 @@ class NamoeyFactory {
 
   createRunner() {
     return new Runner({
-      generator: this._generator,
+      silent: this._silent,
+      generators: this._generators,
       prompts: this._prompts,
       args: this._args,
       options: this._options,

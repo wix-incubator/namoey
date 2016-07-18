@@ -19,7 +19,7 @@ const namoey = require('namoey');
 const generatorWebapp = require('./generators/app');
 
 // Basic settings
-const test = namoey()
+const test = namoey({silent: true})
               .setGenerators([{namespace: 'webapp:app', generator: generatorWebapp}]) // Make sure to add sub-generator for composability
               .setPrompts({name: 'my-cool-project', description: 'awesome stuff'})
               .setArgs('my-app')
