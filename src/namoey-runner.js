@@ -29,7 +29,7 @@ class NamoeyRunner {
         .withOptions(this._options)
         .withArguments(this._args)
         .withPrompts(this._prompts)
-        .withGenerators(this._generators.map(g => [g.generator, g.namespace]))
+        .withGenerators(_.without(this._generators, gen).map(g => [g.generator, g.namespace]))
 
         .inTmpDir(dir => shell.cd(dir))
 
