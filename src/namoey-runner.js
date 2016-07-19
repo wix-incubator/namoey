@@ -1,5 +1,6 @@
 'use strict';
 
+const path = require('path');
 const _ = require('lodash');
 const helpers = require('yeoman-test');
 const shell = require('shelljs');
@@ -39,6 +40,15 @@ class NamoeyRunner {
 
         .on('end', () => {
           this._shellCommands.every(cmd => {
+
+            const cdRegexp = /^(?:cd\s)([\S|\/|\.|.]+)+$/i;
+            const cdResult = cmd.match(cdRegexp);
+
+            if (cdResult) {
+              shell.cd(path.join(shell.pwd().stdout, cdResult[1]));
+              return true;
+            }
+
             const exitCode = shell.exec(cmd, {silent: this._silent}).code;
             if (exitCode !== 0) {
               reject(new Error(`Execution of '${cmd}' faild with exit code ${exitCode}`));

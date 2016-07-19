@@ -36,3 +36,8 @@ test.addShellCommand('echo done');
 const runner = test.createRunner();
 runner.run('webapp:app').then(() => { ... }).catch((err) => { ... });
 ```
+
+### Notes:
+
+- Avoid `&&`, `||` and `&` in a shell command to improve debugging.
+- You can `cd` inside a shell command, just make sure stay within the generated location
