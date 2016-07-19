@@ -4,6 +4,7 @@ const path = require('path');
 const _ = require('lodash');
 const helpers = require('yeoman-test');
 const shell = require('shelljs');
+const boxen = require('boxen');
 
 class NamoeyRunner {
 
@@ -40,6 +41,10 @@ class NamoeyRunner {
 
         .on('end', () => {
           this._shellCommands.every(cmd => {
+
+            if (!this._silent) {
+              console.log(boxen(`Running Script: '${cmd}'`, {padding: 1, margin: 1, borderColor: 'yellow'}));
+            }
 
             const cdRegexp = /^(?:cd\s)([\S|\/|\.|.]+)+$/i;
             const cdResult = cmd.match(cdRegexp);
