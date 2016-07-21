@@ -6,6 +6,8 @@ const helpers = require('yeoman-test');
 const shell = require('shelljs');
 const boxen = require('boxen');
 
+const utils = require('./utils');
+
 class NamoeyRunner {
 
   constructor(options) {
@@ -54,7 +56,7 @@ class NamoeyRunner {
               return true;
             }
 
-            const exitCode = shell.exec(cmd, {silent: this._silent}).code;
+            const exitCode = shell.exec(utils.normalizeCommandWithNvm(cmd), {silent: this._silent}).code;
             if (exitCode !== 0) {
               reject(new Error(`Execution of '${cmd}' faild with exit code ${exitCode}`));
             }
