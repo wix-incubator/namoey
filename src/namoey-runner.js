@@ -4,7 +4,6 @@ const path = require('path');
 const _ = require('lodash');
 const helpers = require('yeoman-test');
 const shell = require('shelljs');
-const boxen = require('boxen');
 
 const utils = require('./utils');
 
@@ -18,6 +17,12 @@ class NamoeyRunner {
     this._args = options.args;
     this._options = options.options;
     this._shellCommands = options.shellCommands;
+  }
+
+  _log(...msgs) {
+    if (!this._silent) {
+      msgs.forEach(msg => console.log(`-----> [NAMOEY] ${msg}`));
+    }
   }
 
   run(genNamespace) {
@@ -35,7 +40,11 @@ class NamoeyRunner {
         .withPrompts(this._prompts)
         .withGenerators(_.without(this._generators, gen).map(g => [g.generator, g.namespace]))
 
-        .inTmpDir(dir => shell.cd(dir))
+        .inTmpDir(dir => {
+          shell.cd(dir);
+
+          this._log(`Running generaor '${genNamespace}' inside`, `${dir}`);
+        })
 
         .on('error', err => {
           reject(err);
@@ -44,9 +53,7 @@ class NamoeyRunner {
         .on('end', () => {
           this._shellCommands.every(cmd => {
 
-            if (!this._silent) {
-              console.log(boxen(`Running Script: '${cmd}'`, {padding: 1, margin: 1, borderColor: 'yellow'}));
-            }
+            this._log(`Running Script: '${cmd}'`);
 
             const cdRegexp = /^(?:cd\s)([\S|\/|\.|.]+)+$/i;
             const cdResult = cmd.match(cdRegexp);

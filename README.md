@@ -20,17 +20,16 @@ const generatorWebapp = require('./generators/app');
 
 // Basic settings
 const test = namoey({silent: true})
-              .setGenerators([{namespace: 'webapp:app', generator: generatorWebapp}]) // Make sure to add sub-generator for composability
-              .setPrompts({name: 'my-cool-project', description: 'awesome stuff'})
-              .setArgs('my-app')
-              .setOptions({coffescript: true});
+  .setGenerators([{namespace: 'webapp:app', generator: generatorWebapp}]) // Make sure to add sub-generator for composability
+  .setPrompts({name: 'my-cool-project', description: 'awesome stuff'})
+  .setArgs('my-app')
+  .setOptions({coffescript: true});
 
 // Those shell commands will be run after yeoman is done
 test.setShellCommands([
   'npm install',
   'npm run build && npm run test'
 ]);
-test.addShellCommand('echo done');
 
 // Start the madness
 const runner = test.createRunner();
@@ -40,4 +39,4 @@ runner.run('webapp:app').then(() => { ... }).catch((err) => { ... });
 ### Notes:
 
 - Avoid `&&`, `||` and `&` in a shell command to improve debugging.
-- You can `cd` inside a shell command, just make sure stay within the generated location
+- You can `cd` inside a shell command, just make sure to stay within the generated location
