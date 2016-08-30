@@ -1,4 +1,8 @@
-# namoey
+<h1 align="center">
+<img width="241" src ="media/yeoman-rotated.png" />
+<br>
+namoey
+</h1>
 
 > Yeoman generators tester
 
@@ -34,6 +38,13 @@ test.setShellCommands([
 // Start the madness
 const runner = test.createRunner();
 runner.run('webapp:app').then(() => { ... }).catch((err) => { ... });
+
+// If you care about logging, you can tag a runner
+// by simply providing a tag string. The following example
+// will print something like this for each log made
+// by a shell script:
+// `----->[NAMOEY:'second run']`
+runner.run('webapp:app', 'second run');
 ```
 
 ### Notes:

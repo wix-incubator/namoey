@@ -19,13 +19,14 @@ class NamoeyRunner {
     this._shellCommands = options.shellCommands;
   }
 
-  _log(...msgs) {
+  _log(tagString, ...msgs) {
     if (!this._silent) {
-      msgs.forEach(msg => console.log(`-----> [NAMOEY] ${msg}`));
+      const tag = tagString ? `[NAMOEY:${tagString}]` : '[NAMOEY]';
+      msgs.forEach(msg => console.log(`-----> ${tag} ${msg}`));
     }
   }
 
-  run(genNamespace) {
+  run(genNamespace, tagString = '') {
     return new Promise((resolve, reject) => {
 
       const gen = _.find(this._generators, g => g.namespace === genNamespace);
@@ -43,7 +44,7 @@ class NamoeyRunner {
         .inTmpDir(dir => {
           shell.cd(dir);
 
-          this._log(`Running generaor '${genNamespace}' inside`, `${dir}`);
+          this._log(tagString, `Running generaor '${genNamespace}' inside:`, `${dir}`);
         })
 
         .on('error', err => {
@@ -53,7 +54,7 @@ class NamoeyRunner {
         .on('end', () => {
           this._shellCommands.every(cmd => {
 
-            this._log(`Running Script: '${cmd}'`);
+            this._log(tagString, `Running Script: '${cmd}'`);
 
             const cdRegexp = /^(?:cd\s)([\S|\/|\.|.]+)+$/i;
             const cdResult = cmd.match(cdRegexp);
