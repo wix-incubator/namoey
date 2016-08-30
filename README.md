@@ -1,5 +1,5 @@
 <h1 align="center">
-<img width="241" src ="media/yeoman-rotated.png" />
+<img width="241" src ="media/yeoman-rotated-2.png" />
 <br>
 namoey
 </h1>
