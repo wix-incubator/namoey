@@ -56,7 +56,7 @@ class NamoeyRunner {
 
             this._log(tagString, `Running Script: '${cmd}'`);
 
-            const cdRegexp = /^(?:cd\s)([\S|\/|\.|.]+)+$/i;
+            const cdRegexp = /^(?:cd\s)([\S|/|.|.]+)+$/i;
             const cdResult = cmd.match(cdRegexp);
 
             if (cdResult) {
