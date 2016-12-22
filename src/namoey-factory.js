@@ -64,7 +64,8 @@ class NamoeyFactory {
       prompts: this._prompts,
       args: this._args,
       options: this._options,
-      shellCommands: this._shellCommands
+      shellCommands: this._shellCommands,
+      directory: this._directory
     });
   }
 }
