@@ -14,6 +14,7 @@ class NamoeyFactory {
     this._args = options.args || '';
     this._options = options.options || {};
     this._shellCommands = options.shellCommands || [];
+    this._directory = options.directory;
   }
 
   setGenerators(generators) {
@@ -48,6 +49,11 @@ class NamoeyFactory {
 
   addShellCommand(cmd) {
     this._shellCommands.push(cmd);
+    return this;
+  }
+
+  setDirectory(directory) {
+    this._directory = directory;
     return this;
   }
 

@@ -17,6 +17,7 @@ class NamoeyRunner {
     this._args = options.args;
     this._options = options.options;
     this._shellCommands = options.shellCommands;
+    this._directory = options.directory;
   }
 
   _log(tagString, ...msgs) {
@@ -31,22 +32,28 @@ class NamoeyRunner {
 
       const gen = _.find(this._generators, g => g.namespace === genNamespace);
 
+      const cd = dir => {
+        shell.cd(dir);
+        this._log(tagString, `Running generaor '${genNamespace}' inside:`, `${dir}`);
+      };
+
       if (!gen) {
         reject(new Error(`Generator '${genNamespace}' is not exist`));
       }
 
-      helpers.run(gen.generator)
+      const runner = helpers.run(gen.generator)
         .withOptions(this._options)
         .withArguments(this._args)
         .withPrompts(this._prompts)
-        .withGenerators(_.without(this._generators, gen).map(g => [g.generator, g.namespace]))
+        .withGenerators(_.without(this._generators, gen).map(g => [g.generator, g.namespace]));
 
-        .inTmpDir(dir => {
-          shell.cd(dir);
+      if (this._directory) {
+        runner.inDir(this._directory, cd);
+      } else {
+        runner.inTmpDir(cd);
+      }
 
-          this._log(tagString, `Running generaor '${genNamespace}' inside:`, `${dir}`);
-        })
-
+      runner
         .on('error', err => {
           reject(err);
         })
