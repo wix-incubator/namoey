@@ -6,18 +6,18 @@
   "author": "yardensm@wix.com",
   "license": " MIT",
   "scripts": {
-    "build": "wix-node-build build",
-    "lint": "wix-node-build lint",
+    "build": "yoshi build",
+    "lint": "yoshi lint",
     "pretest": "npm run lint && npm run build",
-    "test": "wix-node-build test --mocha",
-    "release": "wix-node-build release"
+    "test": "yohsi test --mocha",
+    "release": "yoshi release"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/wix-private/namoey/"
   },
   "publishConfig": {
-    "registry": "http://repo.dev.wix/artifactory/api/npm/npm-local/"
+    "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
     "babel-preset-es2015": "~6.9.0",
@@ -26,7 +26,7 @@
     "eslint": "~2.12.0",
     "eslint-config-wix": "latest",
     "eslint-plugin-mocha": "~3.0.0",
-    "wix-node-build": "^1.0.203"
+    "yoshi": "latest"
   },
   "dependencies": {
     "lodash": "^4.13.1",
