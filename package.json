@@ -9,7 +9,7 @@
     "build": "yoshi build",
     "lint": "yoshi lint",
     "pretest": "npm run lint && npm run build",
-    "test": "yohsi test --mocha",
+    "test": "yoshi test --mocha",
     "release": "yoshi release"
   },
   "repository": {
