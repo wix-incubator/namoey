@@ -3,7 +3,7 @@
 <br>
 namoey
 </h1>
-
+[![Build Status](https://travis-ci.org/wix/namoey.svg?branch=master)](https://travis-ci.org/wix/namoey)
 > Yeoman generators tester
 
 `namoey` (yeoman spelled backwards) runs your generator and some additional shell scripts in a sandbox to make sure your generated projects won't fail at start.
